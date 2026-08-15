@@ -120,14 +120,28 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
 /* ---------- hero ---------- */
 .hero{min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
   padding:calc(58px + 5vh) 4vw 0; position:relative; z-index:1; gap:2rem}
-.hero-top{position:relative}
-.eyebrow{font-family:var(--mono); font-size:clamp(11px,1.2vw,13px); letter-spacing:.22em;
-  text-transform:uppercase; color:var(--mut); margin-bottom:1.6rem; display:flex; align-items:center; gap:14px}
-.eyebrow::before{content:''; width:44px; height:1px; background:var(--acc-t)}
-.hero-mid{position:relative; flex:1; display:flex; flex-direction:column; justify-content:center}
+.lockup{position:relative; margin-top:1vh}
+.hero-band{flex:1; display:flex; align-items:center; justify-content:space-between;
+  gap:5vw; padding:2.5vh 0}
+.statement{max-width:52ch}
+.cta-row{display:flex; gap:1rem; margin-top:2.2rem; flex-wrap:wrap}
+.btnp,.btng{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase;
+  padding:1em 1.8em; border-radius:99px; text-decoration:none; white-space:nowrap;
+  display:inline-flex; align-items:center; gap:.6em}
+.btnp{background:var(--btn-bg); color:var(--btn-fg); transition:box-shadow .3s}
+.btnp:hover{box-shadow:0 0 40px color-mix(in srgb, var(--btn-bg) 45%, transparent)}
+.btnp i{font-style:normal; transition:transform .25s}
+.btnp:hover i{transform:translateY(3px)}
+.btng{border:1px solid var(--line); color:var(--ink); transition:border-color .25s, color .25s}
+.btng:hover{border-color:#25D366; color:#25D366}
+.stats{min-width:clamp(260px,30vw,380px)}
+.srow{display:flex; justify-content:space-between; align-items:baseline; gap:2rem;
+  padding:1rem 2px; border-top:1px solid var(--line); font-family:var(--mono); text-transform:uppercase}
+.srow:last-child{border-bottom:1px solid var(--line)}
+.srow .k{font-size:10.5px; letter-spacing:.18em; color:var(--mut)}
+.srow .v{font-size:12.5px; letter-spacing:.06em; color:var(--ink); text-align:right}
 h1{font-family:var(--disp); font-weight:700; font-size:clamp(2rem,7vw,6rem);
-  line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none;
-  margin-bottom:2.6rem}
+  line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none}
 h1 .row{display:block; overflow:hidden; white-space:nowrap; width:max-content}
 h1 .row.ghost{color:transparent; -webkit-text-stroke:1.2px color-mix(in srgb, var(--ink) 26%, transparent);
   margin-top:.3em}
@@ -135,18 +149,8 @@ h1 .l{display:inline-block; text-align:center; transition:transform .1s}
 h1 .l.o{color:transparent; -webkit-text-stroke:2px var(--ink)}
 h1 .l.o:hover{color:var(--acc-t); -webkit-text-stroke:2px var(--acc-t)}
 h1 .l:hover{color:var(--acc-t)}
-.typedline{font-family:var(--mono); font-size:clamp(15px,2vw,21px); color:var(--ink);
-  min-height:1.6em; max-width:70%}
-.specs{display:flex; align-items:stretch; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-.specs > *{display:flex; align-items:center; gap:.5em; padding:1.25rem 1.8rem;
-  font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
-  color:var(--mut); border-left:1px solid var(--line); white-space:nowrap}
-.specs > span:first-child{border-left:none; padding-left:2px}
-.specs > span b{color:var(--ink); font-weight:500}
-.specs .cta{margin-left:auto; color:var(--acc-t); text-decoration:none; transition:background .25s}
-.specs .cta i{font-style:normal; display:inline-block; transition:transform .25s}
-.specs .cta:hover{background:color-mix(in srgb, var(--acc-t) 12%, transparent)}
-.specs .cta:hover i{transform:translateY(3px)}
+.typedline{font-family:var(--mono); font-size:clamp(16px,2.1vw,23px); color:var(--ink);
+  line-height:1.6; min-height:3.2em}
 .typedline .p{color:var(--acc-t)}
 .caret{display:inline-block; width:.6em; height:1.15em; background:var(--acc-t);
   vertical-align:text-bottom; margin-left:2px; animation:blink 1s steps(1) infinite}
@@ -154,18 +158,20 @@ h1 .l:hover{color:var(--acc-t)}
 .herometa{display:flex; gap:2.2rem; margin-top:1.6rem; font-family:var(--mono);
   font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap}
 .herometa b{color:var(--ink); font-weight:500}
-.badge{position:absolute; right:0; top:-4px; width:clamp(100px,11vw,148px); aspect-ratio:1}
+.badge{position:absolute; right:.5vw; bottom:-14px; width:clamp(96px,9.5vw,136px); aspect-ratio:1; z-index:2}
 .badge text{font-family:var(--mono); font-size:13px; letter-spacing:.14em; fill:var(--mut)}
 .badge .bmid{font-family:var(--sans); font-size:34px; fill:var(--acc-t); letter-spacing:0}
 .badge .spin{transform-origin:80px 80px; animation:spin 16s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (max-width:760px){
   .hero{padding-top:calc(54px + 3vh)}
-  .badge{width:82px; top:2px}
-  .typedline{max-width:calc(100% - 100px)}
-  .specs{flex-wrap:wrap}
-  .specs > *{padding:.85rem 1rem; font-size:10.5px; border-left:none}
-  .specs .cta{margin-left:0; width:100%; justify-content:center; border-top:1px solid var(--line)}
+  .hero-band{flex-direction:column; align-items:stretch; gap:2.2rem}
+  .stats{min-width:0}
+  .badge{width:74px; bottom:-6px}
+  .cta-row .btnp,.cta-row .btng{flex:1; justify-content:center}
+}
+@media (max-width:480px){
+  .badge{display:none}
 }
 
 /* ---------- marquee (hero base strip) ---------- */
@@ -284,7 +290,7 @@ footer .big em{font-style:normal; color:var(--acc-t)}
     <a href="#contact">contact</a>
   </div>
   <div class="nright">
-    <a class="wa" href="https://wa.me/917767838215" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <a class="wa" href="https://wa.me/917767838215?text=Hi%20Rushikesh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20talk." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     </a>
     <details class="menu" id="connectmenu">
@@ -300,25 +306,30 @@ footer .big em{font-style:normal; color:var(--acc-t)}
 </nav>
 
 <header class="hero" id="top">
-  <div class="hero-top">
-    <div class="eyebrow">senior frontend engineer &nbsp;/&nbsp; pune, india</div>
-    <div class="typedline"><span class="p">&gt;&nbsp;</span><span id="typed"></span><span class="caret"></span></div>
+  <div class="lockup">
+    <h1 id="bigname" aria-label="Rushikesh Shirkar, Frontend Engineer">
+      <span class="row" data-word="RUSHIKESH SHIRKAR"></span>
+      <span class="row ghost" data-word="FRONTEND ENGINEER"></span>
+    </h1>
     <svg class="badge" viewBox="0 0 160 160" aria-hidden="true">
       <defs><path id="circ" d="M80,80 m-64,0 a64,64 0 1,1 128,0 a64,64 0 1,1 -128,0"/></defs>
       <g class="spin"><text textLength="396"><textPath href="#circ">OPEN TO WORK ✦ BENGALURU READY ✦ AI NATIVE ✦&#160;</textPath></text></g>
       <text class="bmid" x="80" y="92" text-anchor="middle">↓</text>
     </svg>
   </div>
-  <div class="hero-mid">
-    <h1 id="bigname" aria-label="Rushikesh Shirkar, Frontend Engineer">
-      <span class="row" data-word="RUSHIKESH SHIRKAR"></span>
-      <span class="row ghost" data-word="FRONTEND ENGINEER"></span>
-    </h1>
-    <div class="specs">
-      <span><b>6 yrs</b> shipping</span>
-      <span><b>react · next.js · typescript</b></span>
-      <span><b>ai native</b> workflow</span>
-      <a class="cta" href="#console">ask my agent <i>↓</i></a>
+  <div class="hero-band">
+    <div class="statement">
+      <div class="typedline"><span class="p">&gt;&nbsp;</span><span id="typed"></span><span class="caret"></span></div>
+      <div class="cta-row">
+        <a class="btnp" href="#console">ask my agent <i>↓</i></a>
+        <a class="btng" href="https://wa.me/917767838215?text=Hi%20Rushikesh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20talk." target="_blank" rel="noopener">whatsapp direct</a>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="srow"><span class="k">experience</span><span class="v">6 yrs shipping</span></div>
+      <div class="srow"><span class="k">stack</span><span class="v">react · next.js · typescript</span></div>
+      <div class="srow"><span class="k">mode</span><span class="v">ai native</span></div>
+      <div class="srow"><span class="k">base</span><span class="v">pune → bengaluru</span></div>
     </div>
   </div>
   <div class="marquees" aria-hidden="true">
