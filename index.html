@@ -143,11 +143,11 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
 h1{font-family:var(--disp); font-weight:700; font-size:clamp(2rem,7vw,6rem);
   line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none}
 h1 .row{display:block; overflow:hidden; white-space:nowrap; width:max-content}
-h1 .row.ghost{color:transparent; -webkit-text-stroke:1.2px color-mix(in srgb, var(--ink) 26%, transparent);
-  margin-top:.3em}
+h1 .row.ghost{font-weight:600;
+  color:color-mix(in srgb, var(--ink) 12%, transparent); margin-top:.25em}
 h1 .l{display:inline-block; text-align:center; transition:transform .1s}
-h1 .l.o{color:transparent; -webkit-text-stroke:2px var(--ink)}
-h1 .l.o:hover{color:var(--acc-t); -webkit-text-stroke:2px var(--acc-t)}
+h1 .l.o{color:var(--mut)}
+h1 .l.o:hover{color:var(--acc-t)}
 h1 .l:hover{color:var(--acc-t)}
 .typedline{font-family:var(--mono); font-size:clamp(16px,2.1vw,23px); color:var(--ink);
   line-height:1.6; min-height:3.2em}
@@ -182,8 +182,9 @@ h1 .l:hover{color:var(--acc-t)}
 .mtrack span{font-family:var(--disp); font-weight:600; font-size:clamp(.95rem,2vw,1.5rem); text-transform:uppercase;
   white-space:nowrap; padding-right:.6em; color:var(--ink)}
 .mtrack span i{font-style:normal; color:var(--acc-t); padding-left:.6em}
-.marquee.alt .mtrack span{color:transparent; -webkit-text-stroke:1.1px var(--mut)}
-.marquee.alt .mtrack span i{color:var(--ind); -webkit-text-stroke:0}
+.marquee.alt .mtrack span{font-family:var(--mono); font-weight:500;
+  font-size:clamp(.85rem,1.7vw,1.25rem); color:var(--mut); letter-spacing:.08em}
+.marquee.alt .mtrack span i{color:var(--ind)}
 
 /* ---------- sections ---------- */
 section{padding:9rem 4vw; position:relative; z-index:1}
@@ -192,7 +193,7 @@ section{padding:9rem 4vw; position:relative; z-index:1}
 .seclabel::after{content:''; flex:1; height:1px; background:var(--line)}
 .sechead{font-family:var(--disp); font-weight:700; font-size:clamp(1.7rem,4.6vw,3.4rem); text-transform:uppercase;
   letter-spacing:0; line-height:1.14; margin-bottom:3.5rem}
-.sechead em{font-style:normal; color:transparent; -webkit-text-stroke:1.5px var(--ink)}
+.sechead em{font-style:normal; color:var(--acc-t)}
 
 /* ---------- console (always dark, like a real terminal) ---------- */
 .console{max-width:860px; margin:0 auto; background:#131319; border:1px solid #26262e;
@@ -284,7 +285,7 @@ footer .big em{font-style:normal; color:var(--acc-t)}
 <nav>
   <a class="logo" href="#top">rushikesh<b>.</b>shirkar</a>
   <div class="navlinks">
-    <a href="#console">agent</a>
+    <a href="#console">intro</a>
     <a href="#work">work</a>
     <a href="#products">shipped</a>
     <a href="#contact">contact</a>
@@ -321,7 +322,7 @@ footer .big em{font-style:normal; color:var(--acc-t)}
     <div class="statement">
       <div class="typedline"><span class="p">&gt;&nbsp;</span><span id="typed"></span><span class="caret"></span></div>
       <div class="cta-row">
-        <a class="btnp" href="#console">ask my agent <i>↓</i></a>
+        <a class="btnp" href="#console">play my intro <i>↓</i></a>
         <a class="btng" href="https://wa.me/917767838215?text=Hi%20Rushikesh%2C%20I%20saw%20your%20portfolio%20and%20would%20love%20to%20talk." target="_blank" rel="noopener">whatsapp direct</a>
       </div>
     </div>
@@ -339,10 +340,10 @@ footer .big em{font-style:normal; color:var(--acc-t)}
 </header>
 
 <section id="console">
-  <div class="seclabel">001 / interface demo</div>
-  <div class="sechead reveal">ask the <em>agent</em></div>
+  <div class="seclabel">001 / self intro</div>
+  <div class="sechead reveal">sixty second <em>intro</em></div>
   <div class="console reveal">
-    <div class="cbar"><i></i><i></i><i></i><span>rushikesh.agent · streaming session</span></div>
+    <div class="cbar"><i></i><i></i><i></i><span>rushikesh.intro · scripted replay, built by hand</span></div>
     <div class="cbody" id="cbody"></div>
   </div>
 </section>
@@ -521,9 +522,8 @@ function scramble(){
     setTimeout(function(){
       locked[i] = true;
       l.textContent = finals[i];
-      if(l.classList.contains('o')) l.style.webkitTextStroke = '2px ' + accent;
-      else l.style.color = accent;
-      setTimeout(function(){ l.style.webkitTextStroke = ''; l.style.color = ''; }, 380);
+      l.style.color = accent;
+      setTimeout(function(){ l.style.color = ''; }, 380);
       if(i === ls.length - 1) clearInterval(iv);
     }, 300 + i * 70);
   });
@@ -660,13 +660,14 @@ document.querySelectorAll('#stack .card').forEach(function(c, i){
 
 /* ----- agent console ----- */
 var script = [
-  {t:'sys',  s:'session started · model warm · context loaded'},
+  {t:'sys',  s:'replay started · pre scripted · zero tokens burned'},
   {t:'user', s:'> who is rushikesh?'},
   {t:'agent',s:'Frontend engineer, six years deep in React, Next.js and TypeScript. Spent three of those as the founding engineer of a fintech platform, taking four SaaS products from zero to production. Now shipping enterprise PPM interfaces at Celoxis.'},
   {t:'user', s:'> what makes him different?'},
   {t:'agent',s:'He ships like a founder. Owns everything from render profiling to AWS. Works with Claude and Cursor daily, so one engineer moves like a small team. Comfortable when the spec is a rough idea and the deadline was yesterday.'},
   {t:'user', s:'> is he available?'},
-  {t:'agent',s:'Open to senior frontend roles. Based in Pune, ready to relocate to Bengaluru. Reach him at rushikeshit4003@gmail.com'}
+  {t:'agent',s:'Open to senior frontend roles. Based in Pune, ready to relocate to Bengaluru. Reach him at rushikeshit4003@gmail.com'},
+  {t:'sys',  s:'end of replay · the real conversation starts on whatsapp'}
 ];
 var cbody = document.getElementById('cbody');
 var started = false;
