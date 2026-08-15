@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rushikesh Shirkar · Senior Frontend Engineer</title>
 <meta name="description" content="Frontend engineer, 6 years deep in React, Next.js and TypeScript. Building interfaces for humans and AI agents.">
+<meta name="theme-color" content="#0b0b10">
+<meta property="og:title" content="Rushikesh Shirkar · Senior Frontend Engineer">
+<meta property="og:description" content="React, Next.js and TypeScript engineer. Six years shipping, founding engineer DNA, AI native workflow.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rushikesh-eximfiles.github.io/portfolio/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b10'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='700' fill='%23d9ff3f' text-anchor='middle'%3Ers%3C/text%3E%3C/svg%3E">
 <script>(function(){var t=localStorage.getItem('rs-theme');if(t)document.documentElement.dataset.theme=t;})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +29,7 @@
   --btn-bg:#d9ff3f; --btn-fg:#0b0b10;
   --fill-bg:#d9ff3f; --fill-fg:#0b0b10;
   --cardsh:none;
+  --consh:rgba(0,0,0,.45);
   --sel-bg:#d9ff3f; --sel-fg:#0b0b10;
   --sans:'Space Grotesk',system-ui,sans-serif;
   --disp:'Unbounded','Space Grotesk',sans-serif;
@@ -40,6 +48,7 @@
   --btn-bg:#0071e3; --btn-fg:#ffffff;
   --fill-bg:#0071e3; --fill-fg:#ffffff;
   --cardsh:0 10px 34px rgba(0,0,0,.07);
+  --consh:rgba(0,0,0,.12);
   --sel-bg:#0071e3; --sel-fg:#ffffff;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -111,6 +120,9 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
   border:1px solid var(--line); border-radius:99px; padding:0 14px; height:34px; cursor:none;
   transition:border-color .25s, color .25s}
 .tbtn:hover{border-color:var(--acc-t); color:var(--acc-t)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--acc-t);
+  outline-offset:3px; border-radius:6px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 @media (max-width:860px){.navlinks{display:none}}
 @media (max-width:480px){
   .logo{font-size:14px}
@@ -140,6 +152,9 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
 .srow:last-child{border-bottom:1px solid var(--line)}
 .srow .k{font-size:10.5px; letter-spacing:.18em; color:var(--mut)}
 .srow .v{font-size:12.5px; letter-spacing:.06em; color:var(--ink); text-align:right}
+.srow .v.live{color:var(--acc-t)}
+.srow .v.live i{display:inline-block; width:7px; height:7px; border-radius:50%;
+  background:var(--acc-t); margin-right:8px; animation:pulse 2s infinite}
 h1{font-family:var(--disp); font-weight:700; font-size:clamp(2rem,7vw,6rem);
   line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none}
 h1 .row{display:block; overflow:hidden; white-space:nowrap; width:max-content}
@@ -194,7 +209,7 @@ section{padding:9rem 4vw; position:relative; z-index:1}
 
 /* ---------- console (always dark, like a real terminal) ---------- */
 .console{max-width:860px; margin:0 auto; background:#131319; border:1px solid #26262e;
-  border-radius:14px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.35)}
+  border-radius:14px; overflow:hidden; box-shadow:0 30px 80px var(--consh)}
 .cbar{display:flex; align-items:center; gap:8px; padding:14px 18px; border-bottom:1px solid #26262e; background:#0e0e14}
 .cbar i{width:11px; height:11px; border-radius:50%; background:#3a3a44}
 .cbar i:first-child{background:#ff5f57}.cbar i:nth-child(2){background:#febc2e}.cbar i:nth-child(3){background:#28c840}
@@ -210,7 +225,7 @@ section{padding:9rem 4vw; position:relative; z-index:1}
 .card{position:sticky; background:var(--panel); border:1px solid var(--line); border-radius:18px;
   padding:clamp(1.6rem,3.5vw,2.8rem); display:grid; grid-template-columns:auto 1fr auto; gap:2rem;
   align-items:start; box-shadow:var(--cardsh); transition:box-shadow .3s, border-color .3s, background .4s}
-.card:hover{border-color:var(--acc-t); box-shadow:10px 10px 0 var(--hovsh)}
+.card:hover{border-color:var(--acc-t); box-shadow:0 18px 50px var(--hovsh)}
 .card .num{font-family:var(--mono); font-size:13px; color:var(--acc-t)}
 .card .role{font-family:var(--mono); font-size:11.5px; color:var(--acc-t); letter-spacing:.16em;
   text-transform:uppercase; margin-bottom:.55rem}
@@ -239,6 +254,10 @@ section{padding:9rem 4vw; position:relative; z-index:1}
 .prow .arr{font-size:clamp(1.4rem,3vw,2.2rem); color:var(--mut); transition:transform .3s, color .25s}
 .prow:hover .pname,.prow:hover .pdesc,.prow:hover .arr{color:var(--fill-fg)}
 .prow:hover .arr{transform:translate(6px,-6px)}
+.prow.static::before{display:none}
+.prow.static:hover .pname{color:var(--ink)}
+.prow.static:hover .pdesc,.prow.static:hover .arr{color:var(--mut)}
+.prow.static:hover .arr{transform:none}
 @media (max-width:760px){
   .prow{grid-template-columns:1fr auto; padding:1.5rem .6rem; gap:.5rem}
   .prow .pdesc{grid-column:1/-1}
@@ -326,7 +345,7 @@ footer .big em{font-style:normal; color:var(--acc-t)}
       </div>
     </div>
     <div class="stats">
-      <div class="srow"><span class="k">status</span><span class="v">open to work</span></div>
+      <div class="srow"><span class="k">status</span><span class="v live"><i></i>open to work</span></div>
       <div class="srow"><span class="k">experience</span><span class="v">6 yrs shipping</span></div>
       <div class="srow"><span class="k">stack</span><span class="v">react · next.js · typescript</span></div>
       <div class="srow"><span class="k">mode</span><span class="v">ai native</span></div>
@@ -422,7 +441,7 @@ footer .big em{font-style:normal; color:var(--acc-t)}
     <a class="prow" href="https://ebrc.in" target="_blank" rel="noopener">
       <span class="pname">eBRC</span><span class="pdesc">export compliance, simplified</span><span class="arr">↗</span>
     </a>
-    <div class="prow">
+    <div class="prow static">
       <span class="pname">AskEXIM</span><span class="pdesc">ai assistant for trade queries</span><span class="arr">✦</span>
     </div>
   </div>
@@ -676,7 +695,6 @@ document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 /* ----- sticky card stagger ----- */
 document.querySelectorAll('#stack .card').forEach(function(c, i){
   c.style.top = (96 + i * 18) + 'px';
-  c.style.transform = 'rotate(' + ((i % 2 ? 1 : -1) * 0.4) + 'deg)';
 });
 
 /* ----- agent console ----- */
