@@ -118,23 +118,33 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
 }
 
 /* ---------- hero ---------- */
-.hero{min-height:100svh; display:flex; flex-direction:column; justify-content:flex-start;
-  padding:14vh 4vw 0; position:relative; z-index:1}
+.hero{min-height:100svh; display:flex; flex-direction:column; justify-content:space-between;
+  padding:calc(58px + 5vh) 4vw 0; position:relative; z-index:1; gap:2rem}
+.hero-top{position:relative}
 .eyebrow{font-family:var(--mono); font-size:clamp(11px,1.2vw,13px); letter-spacing:.22em;
-  text-transform:uppercase; color:var(--mut); margin-bottom:1.8rem; display:flex; align-items:center; gap:14px}
+  text-transform:uppercase; color:var(--mut); margin-bottom:1.6rem; display:flex; align-items:center; gap:14px}
 .eyebrow::before{content:''; width:44px; height:1px; background:var(--acc-t)}
+.hero-mid{position:relative}
 h1{font-family:var(--disp); font-weight:700; font-size:clamp(2rem,7vw,6rem);
-  line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none}
+  line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none;
+  margin-bottom:2.4rem}
 h1 .row{display:block; overflow:hidden; white-space:nowrap; width:max-content}
-h1 .l{display:inline-block; transform:translateY(115%); transition:transform .1s;
-  animation:rise 1s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:var(--d)}
+h1 .l{display:inline-block; text-align:center; transition:transform .1s}
 h1 .l.o{color:transparent; -webkit-text-stroke:2px var(--ink)}
 h1 .l.o:hover{color:var(--acc-t); -webkit-text-stroke:2px var(--acc-t)}
 h1 .l:hover{color:var(--acc-t)}
-@keyframes rise{to{transform:translateY(0)}}
-.heroband{display:flex; align-items:center; justify-content:space-between; gap:3rem; margin-top:3rem}
 .typedline{font-family:var(--mono); font-size:clamp(14px,1.8vw,19px); color:var(--ink);
-  min-height:1.6em; margin-bottom:2.4rem}
+  min-height:1.6em; max-width:70%}
+.specs{display:flex; align-items:stretch; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.specs > *{display:flex; align-items:center; gap:.5em; padding:1.05rem 1.6rem;
+  font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--mut); border-left:1px solid var(--line); white-space:nowrap}
+.specs > span:first-child{border-left:none; padding-left:2px}
+.specs > span b{color:var(--ink); font-weight:500}
+.specs .cta{margin-left:auto; color:var(--acc-t); text-decoration:none; transition:background .25s}
+.specs .cta i{font-style:normal; display:inline-block; transition:transform .25s}
+.specs .cta:hover{background:color-mix(in srgb, var(--acc-t) 12%, transparent)}
+.specs .cta:hover i{transform:translateY(3px)}
 .typedline .p{color:var(--acc-t)}
 .caret{display:inline-block; width:.6em; height:1.15em; background:var(--acc-t);
   vertical-align:text-bottom; margin-left:2px; animation:blink 1s steps(1) infinite}
@@ -142,15 +152,18 @@ h1 .l:hover{color:var(--acc-t)}
 .herometa{display:flex; gap:2.2rem; margin-top:1.6rem; font-family:var(--mono);
   font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap}
 .herometa b{color:var(--ink); font-weight:500}
-.badge{width:clamp(110px,13vw,164px); flex:none; aspect-ratio:1}
+.badge{position:absolute; right:0; top:-4px; width:clamp(100px,11vw,148px); aspect-ratio:1}
 .badge text{font-family:var(--mono); font-size:13px; letter-spacing:.14em; fill:var(--mut)}
 .badge .bmid{font-family:var(--sans); font-size:34px; fill:var(--acc-t); letter-spacing:0}
 .badge .spin{transform-origin:80px 80px; animation:spin 16s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (max-width:760px){
-  .hero{padding-top:12vh}
-  .heroband{flex-direction:row; align-items:center; gap:1.5rem}
-  .badge{width:92px}
+  .hero{padding-top:calc(54px + 3vh)}
+  .badge{width:82px; top:2px}
+  .typedline{max-width:calc(100% - 100px)}
+  .specs{flex-wrap:wrap}
+  .specs > *{padding:.85rem 1rem; font-size:10.5px; border-left:none}
+  .specs .cta{margin-left:0; width:100%; justify-content:center; border-top:1px solid var(--line)}
 }
 
 /* ---------- marquee (hero base strip) ---------- */
@@ -285,22 +298,25 @@ footer .big em{font-style:normal; color:var(--acc-t)}
 </nav>
 
 <header class="hero" id="top">
-  <div class="eyebrow">senior frontend engineer &nbsp;/&nbsp; pune, india</div>
-  <div class="typedline"><span class="p">&gt;&nbsp;</span><span id="typed"></span><span class="caret"></span></div>
-  <h1 id="bigname" aria-label="Rushikesh Shirkar">
-    <span class="row" data-word="RUSHIKESH SHIRKAR"></span>
-  </h1>
-  <div class="heroband">
-    <div class="herometa">
-      <span><b>6 yrs</b> shipping</span>
-      <span><b>react · next.js · typescript</b></span>
-      <span><b>ai native</b> workflow</span>
-    </div>
+  <div class="hero-top">
+    <div class="eyebrow">senior frontend engineer &nbsp;/&nbsp; pune, india</div>
+    <div class="typedline"><span class="p">&gt;&nbsp;</span><span id="typed"></span><span class="caret"></span></div>
     <svg class="badge" viewBox="0 0 160 160" aria-hidden="true">
       <defs><path id="circ" d="M80,80 m-64,0 a64,64 0 1,1 128,0 a64,64 0 1,1 -128,0"/></defs>
       <g class="spin"><text textLength="396"><textPath href="#circ">OPEN TO WORK ✦ BENGALURU READY ✦ AI NATIVE ✦&#160;</textPath></text></g>
       <text class="bmid" x="80" y="92" text-anchor="middle">↓</text>
     </svg>
+  </div>
+  <div class="hero-mid">
+    <h1 id="bigname" aria-label="Rushikesh Shirkar">
+      <span class="row" data-word="RUSHIKESH SHIRKAR"></span>
+    </h1>
+    <div class="specs">
+      <span><b>6 yrs</b> shipping</span>
+      <span><b>react · next.js · typescript</b></span>
+      <span><b>ai native</b> workflow</span>
+      <a class="cta" href="#console">ask my agent <i>↓</i></a>
+    </div>
   </div>
   <div class="marquees" aria-hidden="true">
     <div class="marquee"><div class="mtrack" data-speed="1"></div></div>
@@ -429,25 +445,27 @@ syncLabel();
 
 /* ----- hero letters ----- */
 var bigname = document.getElementById('bigname');
-bigname.querySelectorAll('.row').forEach(function(row, r){
+bigname.querySelectorAll('.row').forEach(function(row){
   var word = row.dataset.word;
   var outlined = false;
-  word.split('').forEach(function(ch, i){
+  word.split('').forEach(function(ch){
     var s = document.createElement('span');
     if(ch === ' '){
       outlined = true;               /* everything after the space renders outlined */
       s.className = 'l';
       s.innerHTML = '&nbsp;';
+      s.dataset.ch = ' ';
     } else {
       s.className = outlined ? 'l o' : 'l';
       s.textContent = ch;
+      s.dataset.ch = ch;
     }
-    s.style.setProperty('--d', (0.15 + r*0.12 + i*0.045) + 's');
     row.appendChild(s);
   });
 });
 
-/* fit both rows edge to edge: measure at a probe size, then scale */
+/* fit the row edge to edge, then freeze per-letter widths so the
+   decode animation cannot make the line breathe */
 function fitRows(){
   var target = bigname.clientWidth;
   bigname.querySelectorAll('.row').forEach(function(row){
@@ -456,9 +474,49 @@ function fitRows(){
     if(w > 0) row.style.fontSize = Math.min(100 * target / w, 320) + 'px';
   });
 }
-if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fitRows); }
-setTimeout(fitRows, 60);
-addEventListener('resize', fitRows);
+function layoutName(){
+  /* measure with the FINAL characters regardless of what the decode is showing,
+     then restore, all in one synchronous pass so nothing flashes */
+  var ls = [].slice.call(bigname.querySelectorAll('.l'));
+  var cur = ls.map(function(l){ return l.textContent; });
+  ls.forEach(function(l){ l.style.width = ''; l.textContent = l.dataset.ch; });
+  fitRows();
+  ls.forEach(function(l){ l.style.width = l.getBoundingClientRect().width + 'px'; });
+  ls.forEach(function(l, i){ l.textContent = cur[i]; });
+}
+
+/* decode entrance: glyphs churn, then lock in left to right with an accent flash */
+var GLYPHS = '▓▒░<>/#[]*+=';
+var scrambled = false;
+function scramble(){
+  if(scrambled || reduced) return;
+  scrambled = true;
+  var ls = [].slice.call(bigname.querySelectorAll('.l')).filter(function(l){
+    return l.textContent.trim().length;
+  });
+  var finals = ls.map(function(l){ return l.dataset.ch; });
+  var locked = ls.map(function(){ return false; });
+  var accent = getComputedStyle(document.documentElement).getPropertyValue('--acc-t').trim();
+  var iv = setInterval(function(){
+    ls.forEach(function(l, i){
+      if(!locked[i]) l.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+    });
+  }, 42);
+  ls.forEach(function(l, i){
+    setTimeout(function(){
+      locked[i] = true;
+      l.textContent = finals[i];
+      if(l.classList.contains('o')) l.style.webkitTextStroke = '2px ' + accent;
+      else l.style.color = accent;
+      setTimeout(function(){ l.style.webkitTextStroke = ''; l.style.color = ''; }, 380);
+      if(i === ls.length - 1) clearInterval(iv);
+    }, 300 + i * 70);
+  });
+}
+function boot(){ layoutName(); scramble(); }
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(boot); }
+setTimeout(boot, 450);
+addEventListener('resize', layoutName);
 
 /* letter repel: cache letter centers, rAF-throttled, no layout reads per frame */
 if(!reduced && !coarse){
