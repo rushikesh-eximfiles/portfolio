@@ -89,25 +89,37 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
   letter-spacing:.14em; text-transform:uppercase; position:relative}
 .navlinks a::after{content:''; position:absolute; left:0; bottom:-5px; height:2px; width:0; background:var(--acc-t); transition:width .25s}
 .navlinks a:hover::after{width:100%}
-.nright{display:flex; align-items:center; gap:12px}
-.pill{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--acc-t);
-  border:1px solid color-mix(in srgb, var(--acc-t) 45%, transparent); border-radius:99px; padding:7px 14px; white-space:nowrap}
-.pill i{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--acc-t);
-  margin-right:8px; animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.nright{display:flex; align-items:center; gap:10px}
+.wa{display:flex; align-items:center; justify-content:center; width:34px; height:34px;
+  border-radius:99px; background:#25D366; transition:transform .2s, box-shadow .2s}
+.wa svg{width:18px; height:18px; fill:#fff}
+.wa:hover{transform:scale(1.1); box-shadow:0 0 24px rgba(37,211,102,.5)}
+.menu{position:relative}
+.menu summary{list-style:none; display:flex; align-items:center; justify-content:center;
+  width:34px; height:34px; border:1px solid var(--line); border-radius:99px; color:var(--ink);
+  font-size:15px; letter-spacing:.02em; cursor:none; transition:border-color .25s, color .25s}
+.menu summary::-webkit-details-marker{display:none}
+.menu summary:hover,.menu[open] summary{border-color:var(--acc-t); color:var(--acc-t)}
+.dd{position:absolute; right:0; top:calc(100% + 12px); background:var(--panel);
+  border:1px solid var(--line); border-radius:14px; padding:8px; min-width:190px;
+  box-shadow:0 18px 50px rgba(0,0,0,.22); display:flex; flex-direction:column; z-index:99}
+.dd a{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink); text-decoration:none; padding:10px 12px; border-radius:9px; white-space:nowrap}
+.dd a:hover{background:color-mix(in srgb, var(--acc-t) 12%, transparent); color:var(--acc-t)}
+.dd a span{color:var(--mut); padding-right:.7em}
 .tbtn{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--ink); background:none;
-  border:1px solid var(--line); border-radius:99px; padding:7px 14px; cursor:none; transition:border-color .25s, color .25s}
+  border:1px solid var(--line); border-radius:99px; padding:0 14px; height:34px; cursor:none;
+  transition:border-color .25s, color .25s}
 .tbtn:hover{border-color:var(--acc-t); color:var(--acc-t)}
 @media (max-width:860px){.navlinks{display:none}}
 @media (max-width:480px){
   .logo{font-size:14px}
-  .pill{font-size:9px; padding:6px 9px; letter-spacing:.05em}
-  .tbtn{font-size:9px; padding:6px 9px}
+  .tbtn{font-size:9px; padding:0 9px}
 }
 
 /* ---------- hero ---------- */
-.hero{min-height:100svh; display:flex; flex-direction:column; justify-content:center;
-  padding:15vh 4vw 0; position:relative; z-index:1}
+.hero{min-height:100svh; display:flex; flex-direction:column; justify-content:flex-start;
+  padding:14vh 4vw 0; position:relative; z-index:1}
 .eyebrow{font-family:var(--mono); font-size:clamp(11px,1.2vw,13px); letter-spacing:.22em;
   text-transform:uppercase; color:var(--mut); margin-bottom:1.8rem; display:flex; align-items:center; gap:14px}
 .eyebrow::before{content:''; width:44px; height:1px; background:var(--acc-t)}
@@ -135,24 +147,18 @@ h1 .l:hover{color:var(--acc-t)}
 .badge .bmid{font-family:var(--sans); font-size:34px; fill:var(--acc-t); letter-spacing:0}
 .badge .spin{transform-origin:80px 80px; animation:spin 16s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.scrollcue{position:absolute; bottom:30px; left:4vw; font-family:var(--mono); font-size:11px;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--mut); display:flex; align-items:center; gap:10px}
-.scrollcue::after{content:''; width:1px; height:44px; background:linear-gradient(var(--acc-t),transparent);
-  animation:drip 1.6s ease-in-out infinite}
-@keyframes drip{0%{transform:scaleY(0); transform-origin:top}55%{transform:scaleY(1); transform-origin:top}
-  56%{transform-origin:bottom}100%{transform:scaleY(0); transform-origin:bottom}}
 @media (max-width:760px){
   .hero{padding-top:12vh}
   .heroband{flex-direction:row; align-items:center; gap:1.5rem}
   .badge{width:92px}
 }
 
-/* ---------- marquee ---------- */
-.marquees{padding:4rem 0; transform:skewY(-2deg); position:relative; z-index:1}
-.marquee{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:14px 0}
+/* ---------- marquee (hero base strip) ---------- */
+.marquees{margin:auto -4vw 0; padding:2rem 0 2.4vh; transform:skewY(-1.5deg); position:relative; z-index:1}
+.marquee{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:10px 0}
 .marquee + .marquee{border-top:none}
 .mtrack{display:flex; gap:0; width:max-content; will-change:transform}
-.mtrack span{font-family:var(--disp); font-weight:600; font-size:clamp(1.15rem,2.6vw,2rem); text-transform:uppercase;
+.mtrack span{font-family:var(--disp); font-weight:600; font-size:clamp(.95rem,2vw,1.5rem); text-transform:uppercase;
   white-space:nowrap; padding-right:.6em; color:var(--ink)}
 .mtrack span i{font-style:normal; color:var(--acc-t); padding-left:.6em}
 .marquee.alt .mtrack span{color:transparent; -webkit-text-stroke:1.1px var(--mut)}
@@ -263,7 +269,17 @@ footer .big em{font-style:normal; color:var(--acc-t)}
     <a href="#contact">contact</a>
   </div>
   <div class="nright">
-    <div class="pill"><i></i>OPEN TO BENGALURU</div>
+    <a class="wa" href="https://wa.me/917767838215" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <details class="menu" id="connectmenu">
+      <summary aria-label="More links">⌗</summary>
+      <div class="dd">
+        <a href="https://www.linkedin.com/in/rushikesh-shirkar-772a1112a/" target="_blank" rel="noopener"><span>in/</span>linkedin</a>
+        <a href="https://github.com/RushiShirkar" target="_blank" rel="noopener"><span>gh/</span>github</a>
+        <a href="mailto:rushikeshit4003@gmail.com"><span>@</span>email</a>
+      </div>
+    </details>
     <button class="tbtn" id="themebtn" aria-label="Toggle color theme">LIGHT</button>
   </div>
 </nav>
@@ -286,13 +302,11 @@ footer .big em{font-style:normal; color:var(--acc-t)}
       <text class="bmid" x="80" y="92" text-anchor="middle">↓</text>
     </svg>
   </div>
-  <div class="scrollcue">scroll</div>
+  <div class="marquees" aria-hidden="true">
+    <div class="marquee"><div class="mtrack" data-speed="1"></div></div>
+    <div class="marquee alt"><div class="mtrack" data-speed="-1"></div></div>
+  </div>
 </header>
-
-<div class="marquees" aria-hidden="true">
-  <div class="marquee"><div class="mtrack" data-speed="1"></div></div>
-  <div class="marquee alt"><div class="mtrack" data-speed="-1"></div></div>
-</div>
 
 <section id="console">
   <div class="seclabel">001 / interface demo</div>
@@ -511,11 +525,17 @@ if(!coarse){
     ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
     requestAnimationFrame(loop);
   })();
-  document.querySelectorAll('a, .prow, .card, .mailbtn, .tbtn').forEach(function(el){
+  document.querySelectorAll('a, .prow, .card, .mailbtn, .tbtn, .menu summary').forEach(function(el){
     el.addEventListener('mouseenter', function(){ document.body.classList.add('hovering'); });
     el.addEventListener('mouseleave', function(){ document.body.classList.remove('hovering'); });
   });
 }
+
+/* ----- connect dropdown: close on outside click ----- */
+var cmenu = document.getElementById('connectmenu');
+document.addEventListener('click', function(e){
+  if(cmenu.open && !cmenu.contains(e.target)) cmenu.open = false;
+});
 
 /* ----- progress ----- */
 var prog = document.getElementById('progress');
