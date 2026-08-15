@@ -124,19 +124,21 @@ nav{position:fixed; top:0; left:0; right:0; z-index:80; display:flex; align-item
 .eyebrow{font-family:var(--mono); font-size:clamp(11px,1.2vw,13px); letter-spacing:.22em;
   text-transform:uppercase; color:var(--mut); margin-bottom:1.6rem; display:flex; align-items:center; gap:14px}
 .eyebrow::before{content:''; width:44px; height:1px; background:var(--acc-t)}
-.hero-mid{position:relative}
+.hero-mid{position:relative; flex:1; display:flex; flex-direction:column; justify-content:center}
 h1{font-family:var(--disp); font-weight:700; font-size:clamp(2rem,7vw,6rem);
   line-height:1.06; letter-spacing:-.01em; text-transform:uppercase; user-select:none;
-  margin-bottom:2.4rem}
+  margin-bottom:2.6rem}
 h1 .row{display:block; overflow:hidden; white-space:nowrap; width:max-content}
+h1 .row.ghost{color:transparent; -webkit-text-stroke:1.2px color-mix(in srgb, var(--ink) 26%, transparent);
+  margin-top:.3em}
 h1 .l{display:inline-block; text-align:center; transition:transform .1s}
 h1 .l.o{color:transparent; -webkit-text-stroke:2px var(--ink)}
 h1 .l.o:hover{color:var(--acc-t); -webkit-text-stroke:2px var(--acc-t)}
 h1 .l:hover{color:var(--acc-t)}
-.typedline{font-family:var(--mono); font-size:clamp(14px,1.8vw,19px); color:var(--ink);
+.typedline{font-family:var(--mono); font-size:clamp(15px,2vw,21px); color:var(--ink);
   min-height:1.6em; max-width:70%}
 .specs{display:flex; align-items:stretch; border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-.specs > *{display:flex; align-items:center; gap:.5em; padding:1.05rem 1.6rem;
+.specs > *{display:flex; align-items:center; gap:.5em; padding:1.25rem 1.8rem;
   font-family:var(--mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
   color:var(--mut); border-left:1px solid var(--line); white-space:nowrap}
 .specs > span:first-child{border-left:none; padding-left:2px}
@@ -167,7 +169,7 @@ h1 .l:hover{color:var(--acc-t)}
 }
 
 /* ---------- marquee (hero base strip) ---------- */
-.marquees{margin:auto -4vw 0; padding:2rem 0 2.4vh; transform:skewY(-1.5deg); position:relative; z-index:1}
+.marquees{margin:0 -4vw; padding:1.2rem 0 2.4vh; transform:skewY(-1.5deg); position:relative; z-index:1}
 .marquee{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:10px 0}
 .marquee + .marquee{border-top:none}
 .mtrack{display:flex; gap:0; width:max-content; will-change:transform}
@@ -308,8 +310,9 @@ footer .big em{font-style:normal; color:var(--acc-t)}
     </svg>
   </div>
   <div class="hero-mid">
-    <h1 id="bigname" aria-label="Rushikesh Shirkar">
+    <h1 id="bigname" aria-label="Rushikesh Shirkar, Frontend Engineer">
       <span class="row" data-word="RUSHIKESH SHIRKAR"></span>
+      <span class="row ghost" data-word="FRONTEND ENGINEER"></span>
     </h1>
     <div class="specs">
       <span><b>6 yrs</b> shipping</span>
@@ -447,6 +450,7 @@ syncLabel();
 var bigname = document.getElementById('bigname');
 bigname.querySelectorAll('.row').forEach(function(row){
   var word = row.dataset.word;
+  if(row.classList.contains('ghost')){ row.textContent = word; return; }
   var outlined = false;
   word.split('').forEach(function(ch){
     var s = document.createElement('span');
